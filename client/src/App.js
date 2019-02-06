@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter , Route} from 'react-router-dom'
+import Nav from './components/Nav';
+import Signin from './components/Signin';
+import Login from './components/Login';
+import Home from './components/Home';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Client Side</h1>
-      </div>
+      <BrowserRouter>
+        <div>
+          <Nav />
+          <Route exact path='/' component = {Home} />
+          <Route exact path='/signin' component = {Signin} />
+          <Route exact path='/login' component = {Login} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
