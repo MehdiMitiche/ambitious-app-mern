@@ -5,9 +5,11 @@ const passport = require('passport')
 
 //CRUD OPERATIONS
 const getUser = (req, res) => {
-    const query = {}
-    User.find(query, (err, users) => {
-        res.json({ users })
+    console.log('King In the North')
+    console.log(req.userData)
+    const query = {_id : req.userData.id}
+    User.find(query, (err, user) => {
+        res.json({ user })
     })
 }
 
