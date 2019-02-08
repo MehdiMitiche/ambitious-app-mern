@@ -1,9 +1,16 @@
 import React , {Component} from 'react';
-import {Link} from 'react-router-dom'
+import {Link ,withRouter} from 'react-router-dom'
 
 class Nav extends Component{
+
+    logout = () =>{
+        localStorage.removeItem('userToken');
+        this.props.history.push('/')
+    }
+
     render(){
-        return(
+
+        const loginNav = (
             <nav className="grey darken-4">
                 <div className="nav-wrapper">
                     <ul>
@@ -14,7 +21,29 @@ class Nav extends Component{
                 </div>
             </nav>
         )
+
+        const logoutNav = (
+            <nav className="grey darken-4">
+                <div className="nav-wrapper">
+                    <ul>
+                        <li><Link to="/">home</Link></li>
+                        <li><Link to="/profile">Profile</Link></li>
+                    </ul>
+                    <ul className="right">
+                        <li><button className="aves-effect waves-light btn" onClick={this.logout}>LogOut</button></li>
+                    </ul>
+                </div>
+            </nav>
+        )
+
+ 
+        return(
+            <div>
+                {localStorage.userToken ? logoutNav : loginNav}
+            </div>
+   
+        )
     }
 }
 
-export default Nav ; 
+export default withRouter(Nav) ; 

@@ -33,8 +33,12 @@ const register = (req, res) => {
     const err = req.validationErrors()
 
     if (err) {
+        const errMsg = [];
+        for(i=0;i<err.length;i++){
+            errMsg.push(err[i].msg)
+        }
         res.json({
-            err: err[0].msg
+            err: errMsg
         })
     } else {
         const userData = {
@@ -47,8 +51,9 @@ const register = (req, res) => {
         newUser.save((err, user) => {
 
             if (err) {
+
                 res.json({
-                    err: 'Error saving User'
+                    err: err
                 })
             } else {
                 res.json({
@@ -59,38 +64,53 @@ const register = (req, res) => {
     }
 }
 const login = (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-        if (err) { return next(err) }
-        if (!user) {
-            res.json({
-                msg: 'user Not Find'
-            })
+    req.checkBody('username', 'The Username is required').notEmpty();
+    req.checkBody('password', 'The Password is required').notEmpty();
+
+    const err = req.validationErrors()
+    if(err) {
+        const errMsg = [];
+        for(i=0;i<err.length;i++){
+            errMsg.push(err[i].msg)
         }
-        req.logIn(user, function(err) {
-            if (err) { return next(err); }
-
-            const userData = {
-                id: user._id,
-                username: user.username,
-                password: user.password,
-                user: true
+        console.log(errMsg)
+        res.json({
+            err: errMsg
+        })
+    }else{
+        passport.authenticate('local', (err, user, info) => {
+            if (err) { return next(err) }
+            if (!user) {
+                res.json({
+                    err: ['User Not Find']
+                })
             }
-
-            //Creating the Token
-            jwt.sign(userData, 'SecretKeyHere', {
-                expiresIn: '1h'
-            }, (err, token) => {
-                if (err) {
-                    console.log('no Err')
-                    res.json({
-                        err: err
-                    })
-                } else {
-                    res.json(token)
+            req.logIn(user, (err) => {
+                if (err) { return next(err); }
+    
+                const userData = {
+                    id: user._id,
+                    username: user.username,
+                    password: user.password,
+                    user: true
                 }
-            })
-        });
-    })(req, res, next)
+            
+                //Creating the Token
+                jwt.sign(userData, 'SecretKeyHere', {
+                    expiresIn: '1h'
+                }, (err, token) => {
+                    if (err) {
+                        console.log('no Err')
+                        res.json({
+                            err: err
+                        })
+                    } else {
+                        res.json(token)
+                    }
+                })
+            });
+        })(req, res, next)
+    }
 }
 
 module.exports = {

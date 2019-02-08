@@ -5,6 +5,7 @@ import Nav from './components/Nav';
 import Signin from './components/Signin';
 import Login from './components/Login';
 import Home from './components/Home';
+import Profile from './components/Profile';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Route exact path='/' component = {Home} />
           <Route exact path='/signin' component = {Signin} />
           <Route exact path='/login' component = {Login} />
+          <Route exact path='/profile' component = {Profile} />
         </div>
       </BrowserRouter>
     );
