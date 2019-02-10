@@ -2,6 +2,7 @@ import React , {Component} from 'react';
 //import axios from 'axios';
 import {register} from './userFunctions';
 import Error from './Error' ; 
+import HeadMsg from './HeadMsg';
 
 class Signin extends Component {
 
@@ -29,6 +30,7 @@ class Signin extends Component {
                 this.setState({
                     err : res.data.err
                 })
+                console.log(this.state.err)
             }else{
                 this.props.history.push('/login')
             }
@@ -43,46 +45,39 @@ class Signin extends Component {
 
     render(){
         return(
-            <div>
-                <h1>Signin</h1>
-                <Error errors = {this.state.err} />
+        <div className="row container">
+            <br />
+            {this.state.err.length >0 ? (<Error errors = {this.state.err} />) : (<HeadMsg headers= "Welcome to our site , Sign In !" msg="fill out the form below to sign-up for a new account." />)}
+
+            <div className="col l6 offset-l3 s8 offset-s2" id="fromContainer">
                 <div className="row">
-                        <form className="col l4" onSubmit = {this.signin}>
-                            <input
-                                name="username"
-                                placeholder="User Name"
-                                type="text"
-                                onChange = {this.onChange}
-                            />
-                            <input
-                                name="email"
-                                placeholder="Email"
-                                type="text"
-                                onChange = {this.onChange}
-                            />
-                            <input
-                                name="password"
-                                placeholder="Password"
-                                type="text"
-                                onChange = {this.onChange}
-                            />
-                            <input
-                                name="passwordConf"
-                                placeholder="Password Confirmation"
-                                type="text"
-                                onChange = {this.onChange}
-                            />
-                            <input
-                                value="Sign In"
-                                type="submit"
-                            />
-                        </form>
-                    </div>
-                    <p>{this.state.username}</p>
-                    <p>{this.state.email}</p>
-                    <p>{this.state.password}</p>
-                    <p>{this.state.passwordConf}</p>
+                    <form className="col l10 offset-l1 s12" onSubmit = {this.signin}>
+                        <div className="row">
+                            <div className="input-field col l12 s8 offset-s2">
+                                <input id="username" type="text" className="validate white-text" onChange = {this.onChange} name="username"/>
+                                <label htmlFor="username" className="white-text">Username</label>
+                            </div>
+                            <div className="input-field col l12 s8 offset-s2">
+                                <input id="email" type="text" className="validate white-text" onChange = {this.onChange} name="email" />
+                                <label htmlFor="email" className="white-text">Email</label>
+                            </div>
+                            <div className="input-field col l12 s8 offset-s2">
+                                <input id="password" type="password" className="validate white-text" onChange = {this.onChange}  name="password"/>
+                                <label htmlFor="password" className="white-text">Password</label>
+                            </div>
+                            <div className="input-field col l12 s8 offset-s2">
+                                <input id="passwordConfirmation" type="password" className="validate white-text" onChange = {this.onChange} name="passwordConf" />
+                                <label htmlFor="passwordConfirmation" className="white-text">Password Confirmation</label>
+                            </div>
+                            <div className="input-field col l12 s8 offset-s2">
+                                <input className="ui inverted button" type="submit" value="SignIn" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
+        </div>
+
         )
     }
 

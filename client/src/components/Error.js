@@ -2,11 +2,11 @@ import React from 'react';
 
 const Error = (props) => {
     return(
-        <div>
+        <div className="container">
             {props.errors.map((err , i) => {
                 return(
-                    <p key = {i}>{err}</p>
-                )
+                    <div className="ui warning message" key = {i}>{err}</div>
+               )
             })}
         </div>
     )

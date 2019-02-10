@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {login} from './userFunctions';
 import Error from './Error';
+import HeadMsg from './HeadMsg';
 class Login extends Component {
 
     constructor(){
@@ -41,32 +42,30 @@ class Login extends Component {
 
     render(){
         return(
-            <div>
-                <h1>Login</h1>
-                <Error errors = {this.state.err} />
+            
+       <div className="row container">
+            <br />
+            {this.state.err.length >0 ? (<Error errors = {this.state.err} />) : (<HeadMsg headers= " Login !" msg="fill out the form below to Login to your account." />)}
+            <div className="col l6 offset-l3 s8 offset-s2" id="fromContainer">
                 <div className="row">
-                    <form className="col l4" onSubmit = {this.login}>
-                        <input
-                         name="username"
-                         placeholder="User Name"
-                         type="text"
-                         onChange = {this.onChange}
-                        />
-                        <input
-                         name="password"
-                         placeholder="Password"
-                         type="text"
-                         onChange = {this.onChange}
-                        />
-                       <input
-                         value="Sign In"
-                         type="submit"
-                        />
+                    <form className="col l10 offset-l1 s12" onSubmit = {this.login}>
+                        <div className="row">
+                            <div className="input-field col l12 s8 offset-s2">
+                                <input id="username" type="text" className="validate white-text" onChange = {this.onChange} name="username" />
+                                <label htmlFor="username" className="white-text">Username</label>
+                            </div>
+                            <div className="input-field col l12 s8 offset-s2">
+                                <input id="password" type="password" className="validate white-text" onChange = {this.onChange} name="password" />
+                                <label htmlFor="password" className="white-text">Password</label>
+                            </div>
+                            <div className="input-field col l12 s8 offset-s2">
+                                <input className="ui inverted button" type="submit" value="Login" />
+                            </div>
+                        </div>
                     </form>
                 </div>
-
-
             </div>
+        </div>
         )
     }
 }

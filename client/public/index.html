@@ -3,7 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./semantic.min.css">
     <link rel="stylesheet" href="./materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style type="text/css">
+    body {
+        font-family: 'Varela Round', sans-serif;
+        background-image: url('./img/pic14.jpeg');
+        height: 400px;
+        /* You must set a specified height */
+        background-position: center;
+        /* Center the image */
+        background-repeat: no-repeat;
+        /* Do not repeat the image */
+        background-size: cover;
+        /* Resize the background image to cover the entire container */
+    }
+
+    #fromContainer {
+        background-color: rgb(20, 20, 20, 0.7);
+        margin-top: 15px;
+    }
+
+    .ui.message .list:not(.ui) li:before {
+        content: '';
+    }
+    </style>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -38,7 +64,14 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-        <!-- Compiled and minified JavaScript -->
-        <script src="./materialize.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="./materialize.min.js"></script>
+    <script src="./semantic.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(() => {
+        $('.sidenav').sidenav();
+    })
+    </script>
   </body>
 </html>
