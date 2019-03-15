@@ -15,10 +15,13 @@ class Profile extends Component {
     componentDidMount(){
         
         if(localStorage.userToken){
+            console.log(localStorage.userToken)
             axios
             .get('http://localhost:8080/user/',{headers : {'x-access-token' : localStorage.userToken}})
             .then((res) =>{
+                console.log('hey')
                 console.log(res)
+                
                 this.setState({
                     email : res.data.user[0].email,
                     username : res.data.user[0].username

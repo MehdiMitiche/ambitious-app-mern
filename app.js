@@ -12,6 +12,7 @@ const app = express()
 const userRouter = require('./routes/userRoutes')
 const adminRouter = require('./routes/adminRoutes')
 const authRouter = require('./routes/authRoutes')
+const todoRouter = require('./routes/todoRouter')
 
 //VerifyTokenMiddelware
 const verifyToken = require('./controllers/tokenController')
@@ -72,6 +73,7 @@ app.get('/post', verifyToken, (req, res) => {
 app.use('/user', userRouter)
 app.use('/admin', adminRouter)
 app.use('/auth', authRouter)
+app.use('/todo',todoRouter)
 
 app.listen(8080, () => {
     console.log('Server Lunched In Port 8080')

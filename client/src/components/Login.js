@@ -17,27 +17,27 @@ class Login extends Component {
         }
     }
 
-    login = (event) => {
+    onLogin = (event) => {
         event.preventDefault();
         const user = {
             username : this.state.username,
             password : this.state.password
         }
         login(user).then( (res) => {
-            console.log(res);
             if(res.data.err){
-                console.log('Err')
                 console.log(res.data.err)
                 this.setState({
                     err : res.data.err
                 })
             }else{
+                console.log(res.data)
                 localStorage.setItem('userToken' , res.data)
                 this.props.history.push('/')
             }
 
         })
     }
+ 
 
     onChange = (event) => {
         this.setState({
@@ -53,7 +53,7 @@ class Login extends Component {
                     {this.state.err.length >0 ? (<Error errors = {this.state.err} />) : (<HeadMsg headers= " Login !" msg="fill out the form below to Login to your account." />)}
                     <div className="col l6 offset-l3 s8 offset-s2" id="fromContainer">
                         <div className="row">
-                            <form className="col l10 offset-l1 s12" onSubmit = {this.login}>
+                            <form className="col l10 offset-l1 s12" onSubmit = {this.onLogin}>
                                 <div className="row">
                                     <div className="input-field col l12 s8 offset-s2">
                                         <input id="username" type="text" className="validate white-text" onChange = {this.onChange} name="username" />
