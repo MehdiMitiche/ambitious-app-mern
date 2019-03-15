@@ -35,6 +35,7 @@ const register = (req, res) => {
     const err = req.validationErrors()
 
     if (err) {
+        //console.log('err')
         const errMsg = [];
         for(i=0;i<err.length;i++){
             errMsg.push(err[i].msg)
@@ -76,9 +77,8 @@ const login = (req, res, next) => {
             errMsg.push(err[i].msg)
         }
         console.log(errMsg)
-        res.json({
-            err: errMsg
-        })
+        const err1 = {err : errMsg}
+        res.send({err : errMsg})
     }else{
         passport.authenticate('local', (err, user, info) => {
             if (err) { return next(err) }

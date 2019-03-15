@@ -18,7 +18,7 @@ class Profile extends Component {
             axios
             .get('http://localhost:8080/user/',{headers : {'x-access-token' : localStorage.userToken}})
             .then((res) =>{
-                console.log(res.data.user[0].email)
+                console.log(res)
                 this.setState({
                     email : res.data.user[0].email,
                     username : res.data.user[0].username

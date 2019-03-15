@@ -32,6 +32,12 @@ app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 //Using Express-session middleware
 app.use(session({
     secret: 'keyboard cat',
@@ -52,7 +58,7 @@ app.use(expressValidator())
 
 
 app.get('/', (req, res) => {
-    res.send('Mentor Link is Comming ')
+    res.json({text : "MEntor Link Is Coming"})
 })
 
 //authentification Needed
