@@ -1,8 +1,14 @@
 const Todo = require('../models/Todo');
 
 getTodos = (req , res) =>{
-    res.json({
-        msg : 'Todo'
+    Todo.find((err , todos) =>{
+        if(err){
+            res.json({
+                err
+            })
+        }else{
+            res.json(todos)
+        }
     })
 }
 
