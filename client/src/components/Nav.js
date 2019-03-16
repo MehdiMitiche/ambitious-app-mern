@@ -21,6 +21,7 @@ class Nav extends Component{
             <div>
                 <li><Link to="/" className="black-text">home</Link></li>
                 <li><Link to="/profile" className="black-text">Profile</Link></li>
+                <li><Link to="/todos" className="black-text">Todos</Link></li>
                 <li><button className="waves-effect waves-light btn" onClick={this.logout}>Button</button></li>
             </div>
         )
