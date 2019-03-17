@@ -14,18 +14,26 @@ class Profile extends Component {
 
     componentDidMount(){
         
+        
         if(localStorage.userToken){
+            console.log('heey')
             console.log(localStorage.userToken)
             axios
             .get('http://localhost:8080/user/',{headers : {'x-access-token' : localStorage.userToken}})
             .then((res) =>{
-                console.log('hey')
-                console.log(res)
-                
-                this.setState({
-                    email : res.data.user[0].email,
-                    username : res.data.user[0].username
-                })
+                if(res.data.err){
+                    this.setState({
+                        msg : 'U need To Log In'
+                    })
+                    setTimeout( () => {
+                        this.props.history.push('/login')
+                    } ,2000)
+                }else{
+                    this.setState({
+                        email : res.data.user[0].email,
+                        username : res.data.user[0].username
+                    })
+                }
             })
         }else{
             this.setState({
@@ -34,9 +42,7 @@ class Profile extends Component {
             setTimeout( () => {
                 this.props.history.push('/login')
             } ,2000)
-            
         }
-
     }
 
     render(){

@@ -9,7 +9,14 @@ const getUser = (req, res) => {
     console.log(req.userData)
     const query = {_id : req.userData.id}
     User.find(query, (err, user) => {
-        res.json({ user })
+        if(err){
+            res.json({
+                err
+            })
+        }else{
+            res.json({ user })
+        }
+        
     })
 }
 

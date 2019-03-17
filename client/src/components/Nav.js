@@ -19,9 +19,9 @@ class Nav extends Component{
 
         const logoutNav = (
             <div>
-                <li><Link to="/" className="black-text">home</Link></li>
-                <li><Link to="/profile" className="black-text">Profile</Link></li>
-                <li><Link to="/todos" className="black-text">Todos</Link></li>
+                <li><Link to="/" >home</Link></li>
+                <li><Link to="/profile" >Profile</Link></li>
+                <li><Link to="/todos" >Todos</Link></li>
                 <li><button className="waves-effect waves-light btn" onClick={this.logout}>Button</button></li>
             </div>
         )
@@ -29,9 +29,9 @@ class Nav extends Component{
         return(
             <div>
                 <nav>
-                    <div className="nav-wrapper white">
-                        <Link to="#" className="brand-logo center black-text">Ambitious</Link>
-                        <Link to="#" data-target="nav-mobile" className="sidenav-trigger black-text"><i className="material-icons">menu</i></Link>
+                    <div className="nav-wrapper black">
+                        <Link to="#" className="brand-logo center ">Ambitious</Link>
+                        <Link to="#" data-target="nav-mobile" className="sidenav-trigger "><i className="material-icons">menu</i></Link>
                         <ul className="left hide-on-med-and-down">
                             {localStorage.userToken ? logoutNav : loginNav}
                         </ul>
