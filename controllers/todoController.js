@@ -28,7 +28,7 @@ addTodo = (req , res) =>{
         })
     }else{
         const newTodo = new Todo({
-            author : 'mehdi',
+            author : req.body.author,
             description : req.body.description,
             title : req.body.title
         })

@@ -11,9 +11,9 @@ class Nav extends Component{
     render(){
         const loginNav = (
             <div>
-                <li><Link to="/" className="black-text">Home</Link></li>
-                <li><Link to="/signin" className="black-text">Sign Up</Link></li>
-                <li><Link to="/login" className="black-text">Login</Link></li>
+                <li><Link to="/" >Home</Link></li>
+                <li><Link to="/signin" >Sign Up</Link></li>
+                <li><Link to="/login">Login</Link></li>
             </div>
         )
 

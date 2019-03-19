@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 import TodoForm from './TodoForm';
 import TodoContent from './TodoContent';
 
@@ -10,6 +11,7 @@ class Todos extends Component{
     constructor(){
         super();
         this.state = {
+            username : jwtDecode(localStorage.userToken).username,
             todos : [],
             msg : '',
             title : '',
@@ -25,17 +27,17 @@ class Todos extends Component{
     }
     //On submit Todo Form 
     addTodo = (event) => {
+        
         event.preventDefault();
         const newTodo = {
             title : this.state.title,
             description : this.state.description,
-            author : 'mehdi'
+            author : this.state.username
         }
-        console.log(localStorage.userToken)
         axios.post('http://localhost:8080/todo',newTodo,{headers : {'x-access-token' : localStorage.userToken}})
         .then((res) =>{
             this.setState({
-                todos : [...this.state.todos,res.data]
+                todos : [...this.state.todos,res.data.todo]
             })
         })
     }
@@ -54,7 +56,6 @@ class Todos extends Component{
                         this.props.history.push('/login')
                     },2000)
                 }else{
-                    console.log(res.data);
                     this.setState({
                         todos : res.data
                     })
@@ -75,23 +76,20 @@ class Todos extends Component{
     render(){
         return(
             <div>
-                <div>
-                    <div className="row">
-                        <div className="col s12" id="head">
-                            <br />
-                            <br />
-                            <TodoForm
-                             onChange={this.onChange}  
-                             onSubmit={this.addTodo}  
-                            />
-                        </div>
+                <div className="row">
+                    <div className="col s12" id="head">
+                        <br />
+                        <br />
+                        <TodoForm
+                         onChange={this.onChange}  
+                         onSubmit={this.addTodo}  
+                        />
                     </div>
-                    <div className="row">
-                        <div className="col l10 offset-l1">
-                            <TodoContent todos={this.state.todos} />
-                        </div>
+                </div>
+                <div className="row">
+                    <div className="col l10 offset-l1">
+                        <TodoContent todos={this.state.todos} />
                     </div>
-                    <p>{this.state.title}</p>
                 </div>
             </div>
         )
