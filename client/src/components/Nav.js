@@ -11,9 +11,9 @@ class Nav extends Component{
     render(){
         const loginNav = (
             <div>
-                <li><Link to="/" >Home</Link></li>
-                <li><Link to="/signin" >Sign Up</Link></li>
-                <li><Link to="/login">Login</Link></li>
+                <li style={{fontFamily: 'Oswald'}}><Link to="/" >Home</Link></li>
+                <li style={{fontFamily: 'Oswald'}}><Link to="/signin" >Sign Up</Link></li>
+                <li style={{fontFamily: 'Oswald'}}><Link to="/login">Login</Link></li>
             </div>
         )
 
@@ -30,7 +30,7 @@ class Nav extends Component{
             <div>
                 <nav>
                     <div className="nav-wrapper black">
-                        <Link to="#" className="brand-logo center ">Ambitious</Link>
+                        <Link to="#" className="brand-logo center " style={{fontFamily: 'Oswald'}}>Ambitious</Link>
                         <Link to="#" data-target="nav-mobile" className="sidenav-trigger "><i className="material-icons">menu</i></Link>
                         <ul className="left hide-on-med-and-down">
                             {localStorage.userToken ? logoutNav : loginNav}

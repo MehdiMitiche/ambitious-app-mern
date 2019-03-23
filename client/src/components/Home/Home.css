@@ -1,0 +1,32 @@
+.body{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../assets/img/pic14.jpeg');
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    font-family: 'Oswald', sans-serif;
+}
+.logo{
+    height: 100px;
+    width: 60px;
+    background-image: url('../../assets/img/logo1.JPG');
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+
+}
+
+.header{
+    font-size: 48px;
+}
+
+.headerContainer{
+    margin-top: 30px;
+}
+.headerTitle{
+    font-size: 48px;
+}

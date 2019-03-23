@@ -4,7 +4,7 @@ import {BrowserRouter , Route} from 'react-router-dom'
 import Nav from './components/Nav';
 import Signin from './components/Signin';
 import Login from './components/Login';
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import Profile from './components/Profile';
 import Todos from './components/Todo/Todos';
 
